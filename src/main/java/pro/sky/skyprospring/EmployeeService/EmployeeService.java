@@ -6,22 +6,20 @@ import pro.sky.skyprospring.Exceptions.EmployeeAlreadyAddedException;
 import pro.sky.skyprospring.Exceptions.EmployeeNotFoundException;
 import pro.sky.skyprospring.Exceptions.EmployeeStorageIsFullException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeService {
-    public static List<Employee> employeeList = new ArrayList<>();
+    public static Map<String, Employee> employees = new HashMap<>();
     private static final int MAXNUMBEROFEMPLOYEES = 5;
 
     public Employee addEmployee(String firstName, String lastName) {
-        if (employeeList.size() < MAXNUMBEROFEMPLOYEES) {
+        if (employees.size() < MAXNUMBEROFEMPLOYEES) {
             if (isMatchEmployees(firstName, lastName)) {
                 throw new EmployeeAlreadyAddedException();
             } else {
                 Employee employee = new Employee(firstName, lastName);
-                employeeList.add(employee);
+                employees.put(buildKey(firstName, lastName), employee);
                 return employee;
             }
         } else {
@@ -33,26 +31,27 @@ public class EmployeeService {
         if (!isMatchEmployees(firstName, lastName)) {
             throw new EmployeeNotFoundException();
         } else {
-            Employee employee = new Employee(firstName, lastName);
-            employeeList.remove(employee);
-            return employee;
+            return employees.remove(buildKey(firstName, lastName));
         }
     }
 
     public Employee findEmployee(String firstName, String lastName) {
         if (isMatchEmployees(firstName, lastName)) {
-            return new Employee(firstName, lastName);
+            return employees.get(buildKey(firstName, lastName));
         } else {
             throw new EmployeeNotFoundException();
         }
     }
 
     private boolean isMatchEmployees(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        return employeeList.contains(employee);
+        return employees.containsKey(buildKey(firstName, lastName));
     }
 
-    public List<Employee> getEmployeeList() {
-        return Collections.unmodifiableList(employeeList);
+    public Collection<Employee> getEmployeeList() {
+        return Collections.unmodifiableCollection(employees.values());
+    }
+
+    private String buildKey(String firstname, String lastName) {
+        return firstname + lastName;
     }
 }
