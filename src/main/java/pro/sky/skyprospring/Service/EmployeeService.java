@@ -1,4 +1,4 @@
-package pro.sky.skyprospring.Service.impl;
+package pro.sky.skyprospring.Service;
 
 import pro.sky.skyprospring.model.Employee;
 
@@ -11,5 +11,5 @@ public interface EmployeeService {
 
     Employee findEmployee(String firstName, String lastname);
 
-    Collection<Employee> allEmployyes();
+    Collection<Employee> allEmployees();
 }
