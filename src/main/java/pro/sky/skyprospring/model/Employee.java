@@ -1,6 +1,7 @@
 package pro.sky.skyprospring.model;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Employee {
 
@@ -10,11 +11,12 @@ public class Employee {
     private final int department;
 
 
-    public Employee(String firstName, String lastName, int salary, int department) {
+    public Employee(String firstName, String lastName) {
+        Random random = new Random();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.salary = salary;
-        this.department = department;
+        this.salary = random.nextInt(10000) + 1000;
+        this.department = random.nextInt(5) + 1;
     }
 
     public String getFirstName() {

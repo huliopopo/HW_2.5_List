@@ -1,7 +1,7 @@
-package pro.sky.skyprospring.Service;
+package pro.sky.skyprospring.Service.impl;
 
 import org.springframework.stereotype.Service;
-import pro.sky.skyprospring.Service.impl.EmployeeService;
+import pro.sky.skyprospring.Service.EmployeeService;
 import pro.sky.skyprospring.model.Employee;
 import pro.sky.skyprospring.Exceptions.EmployeeAlreadyAddedException;
 import pro.sky.skyprospring.Exceptions.EmployeeNotFoundException;
@@ -14,13 +14,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public static Map<String, Employee> employees = new HashMap<>();
     private static final int MAXNUMBEROFEMPLOYEES = 5;
 
-    public Employee addEmployee(String firstName, String lastName, int salary, int department) {
+    public Employee addEmployee(String firstName, String lastName) {
         if (employees.size() < MAXNUMBEROFEMPLOYEES) {
             String key = buildKey(firstName, lastName);
             if (employees.containsKey(key)) {
                 throw new EmployeeAlreadyAddedException();
             } else {
-                Employee employee = new Employee(firstName, lastName,salary,department);
+                Employee employee = new Employee(firstName, lastName);
                 employees.put(key, employee);
                 return employee;
             }
@@ -50,11 +50,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Collection<Employee> allEmployyes() {
+    public Collection<Employee> allEmployees() {
         return Collections.unmodifiableCollection(employees.values());
     }
+
 
     private String buildKey(String firstname, String lastName) {
         return firstname + lastName;
     }
 }
+
