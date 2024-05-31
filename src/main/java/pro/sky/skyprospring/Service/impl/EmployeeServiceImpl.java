@@ -14,13 +14,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public static Map<String, Employee> employees = new HashMap<>();
     private static final int MAXNUMBEROFEMPLOYEES = 5;
 
-    public Employee addEmployee(String firstName, String lastName, int salary, int department) {
+    public Employee addEmployee(String firstName, String lastName) {
         if (employees.size() < MAXNUMBEROFEMPLOYEES) {
             String key = buildKey(firstName, lastName);
             if (employees.containsKey(key)) {
                 throw new EmployeeAlreadyAddedException();
             } else {
-                Employee employee = new Employee(firstName, lastName, salary, department);
+                Employee employee = new Employee(firstName, lastName);
                 employees.put(key, employee);
                 return employee;
             }
@@ -58,42 +58,5 @@ public class EmployeeServiceImpl implements EmployeeService {
     private String buildKey(String firstname, String lastName) {
         return firstname + lastName;
     }
-
-
-    /////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
- /*   public Employee findMinSalaryEmployeeByDepartment(int department) {
-        Employee minSalaryEmployeeByDepartment = employees[0];
-        int minSum = Integer.MAX_VALUE;
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null && employees[i].getDepartment() == department && employees[i].getSalary() < minSum) {
-                minSum = employees[i].getSalary();
-                minSalaryEmployeeByDepartment = employees[i];
-            }
-        }
-        return minSalaryEmployeeByDepartment;
-    }
-
-    public Map<String, Employee> findMinSalaryEmployeeByDepartment = employees.stream.
-
-
-
-
-
-    public Employee findMaxSalaryEmployeeByDepartment(int department) {
-        int maxSum = 0;
-        Employee maxSalaryEmployeeByDepartment = employees[0];
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null && employees[i].getDepartment() == department && employees[i].getSalary() > maxSum) {
-                maxSum = employees[i].getSalary();
-                maxSalaryEmployeeByDepartment = employees[i];
-            }
-        }
-        return maxSalaryEmployeeByDepartment;
-    }*/
-
-
 }
 

@@ -35,6 +35,7 @@ public class DepartmentContoller {
     public Collection<Employee> all(@RequestParam int departmentId) {
         return departmentService.findAllEmployeesByDepartment(departmentId);
     }
+
     @GetMapping("/all")
     public Map<Integer, List<Employee>> all() {
         return departmentService.findAllEmployeesByDepartment();
