@@ -1,6 +1,8 @@
 package pro.sky.skyprospring.Service.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import pro.sky.skyprospring.Exceptions.InvalidInputException;
 import pro.sky.skyprospring.Service.EmployeeService;
 import pro.sky.skyprospring.model.Employee;
 import pro.sky.skyprospring.Exceptions.EmployeeAlreadyAddedException;
@@ -16,6 +18,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public Employee addEmployee(String firstName, String lastName) {
         if (employees.size() < MAXNUMBEROFEMPLOYEES) {
+            firstName = validateInput(firstName);
+            lastName = validateInput(lastName);
             String key = buildKey(firstName, lastName);
             if (employees.containsKey(key)) {
                 throw new EmployeeAlreadyAddedException();
@@ -57,6 +61,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private String buildKey(String firstname, String lastName) {
         return firstname + lastName;
+    }
+
+    private String validateInput(String string) {
+        if (!StringUtils.isAlpha(string)) {
+            throw new InvalidInputException();
+        }
+        return StringUtils.capitalize(string.toLowerCase());
     }
 }
 
