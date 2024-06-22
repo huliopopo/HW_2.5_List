@@ -11,12 +11,12 @@ public class Employee {
     private final int department;
 
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, int salary, int department) {
         Random random = new Random();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.salary = random.nextInt(10000) + 1000;
-        this.department = random.nextInt(5) + 1;
+        this.salary = salary;
+        this.department = department;
     }
 
     public String getFirstName() {
