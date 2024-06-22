@@ -16,7 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public static Map<String, Employee> employees = new HashMap<>();
     private static final int MAXNUMBEROFEMPLOYEES = 5;
 
-    public Employee addEmployee(String firstName, String lastName) {
+    public Employee addEmployee(String firstName, String lastName, int salary, int department) {
         if (employees.size() < MAXNUMBEROFEMPLOYEES) {
             firstName = validateInput(firstName);
             lastName = validateInput(lastName);
@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             if (employees.containsKey(key)) {
                 throw new EmployeeAlreadyAddedException();
             } else {
-                Employee employee = new Employee(firstName, lastName);
+                Employee employee = new Employee(firstName, lastName, salary, department);
                 employees.put(key, employee);
                 return employee;
             }
