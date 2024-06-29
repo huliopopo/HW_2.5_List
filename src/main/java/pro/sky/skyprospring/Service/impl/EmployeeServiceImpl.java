@@ -55,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Collection<Employee> allEmployees() {
-        return Collections.unmodifiableCollection(employees.values());
+        return new ArrayList<>(employees.values());
     }
 
 

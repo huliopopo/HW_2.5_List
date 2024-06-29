@@ -1,3 +1,4 @@
+/*
 package pro.sky.skyprospring.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +24,12 @@ public class DepartmentContoller {
 
     @GetMapping("/max-salary")
     public Employee maxSalary(@RequestParam int departmentId) {
-        return departmentService.findMaxSalaryEmployeeByDepartment(departmentId);
+        return departmentService.findMaxSalaryByDepartment(departmentId);
     }
 
     @GetMapping("/min-salary")
     public Employee minSalary(@RequestParam int departmentId) {
-        return departmentService.findMinSalaryEmployeeByDepartment(departmentId);
+        return departmentService.findMinSalaryByDepartment(departmentId);
     }
 
     @GetMapping(value = "/all", params = "departmentId")
@@ -42,3 +43,4 @@ public class DepartmentContoller {
     }
 
 }
+*/
