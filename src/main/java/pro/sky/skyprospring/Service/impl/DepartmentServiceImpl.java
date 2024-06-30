@@ -63,7 +63,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return employeeService.allEmployees().stream()
                 .filter(employee -> employee.getDepartment() == department)
                 .map(employee -> employee.getSalary())
-                .reduce(0, ((integer, integer2) -> integer + integer2));
+                .reduce(0, (integer, integer2) -> integer + integer2);
     }
 
 
