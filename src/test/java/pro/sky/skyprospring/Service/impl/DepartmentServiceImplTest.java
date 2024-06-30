@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class DepartmentServiceImplTest {
     @Mock
-    private EmployeeServiceImpl employeeService;
+    private EmployeeService employeeService;
     @InjectMocks
     private DepartmentServiceImpl departmentService;
 
