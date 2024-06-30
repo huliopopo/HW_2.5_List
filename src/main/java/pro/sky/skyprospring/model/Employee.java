@@ -12,7 +12,6 @@ public class Employee {
 
 
     public Employee(String firstName, String lastName, int salary, int department) {
-        Random random = new Random();
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
