@@ -15,7 +15,7 @@ import java.util.Map;
 public class NewDepartmentController {
     private final DepartmentService departmentService;
 
-    public NewDepartmentController(DepartmentServiceImpl departmentService) {
+    public NewDepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
 
